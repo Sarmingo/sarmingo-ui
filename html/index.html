@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarmingo UI</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        img {
+            max-width: 80%;
+            max-height: 80vh;
+            border: 5px solid rgba(255, 255, 255, 0.301);
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.336);
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+    </style>
+</head>
+<body>
+    <img id="image" src="" alt="">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+    window.addEventListener("message", function (event) {
+        var image = document.getElementById("image");
+        if (event.data.type === "show_image") {
+            image.src = event.data.url;
+            $("#image").fadeIn(300);
+        } else if (event.data.type === "close_image") {
+            image.src = "";
+            $("#image").fadeOut(1);
+        }
+    });
+});
+    </script>
+</body>
+</html>
